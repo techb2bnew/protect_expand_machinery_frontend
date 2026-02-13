@@ -32,7 +32,7 @@ jobs:
       # 4️⃣ Build Next.js app
       - name: Build application
         run: |
-          npx next build
+          npm run build
           echo "✅ Next.js build completed"
         env:
           NODE_ENV: production
@@ -44,19 +44,6 @@ jobs:
           rm -rf .git .next/cache
           echo "✅ Deployment files ready"
 
-      # 6️⃣ Fix remote permissions
-      - name: Fix remote permissions
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY_LIVE }}
-          port: 62987
-          script: |
-            echo "Fixing permissions..."
-            sudo chown -R ${{ secrets.SERVER_USER }}:${{ secrets.SERVER_USER }} /home/ec2-user/expand_machinery_frontend/
-            sudo chmod -R 755 /home/ec2-user/expand_machinery_frontend/
-            echo "Permissions fixed"
 
       # 7️⃣ Deploy via Rsync
       - name: Deploy via Rsync
@@ -65,9 +52,9 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY_LIVE }}
           REMOTE_HOST: ${{ secrets.SERVER_IP }}
           REMOTE_USER: ${{ secrets.SERVER_USER }}
-          REMOTE_PORT: 62987
-          TARGET: /home/ec2-user/expand_machinery_frontend/
-          ARGS: "-rlgoDzvc --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --no-perms --no-owner --no-group --exclude=node_modules --exclude=.git --exclude=.next/cache"
+          REMOTE_PORT: 22
+          TARGET: /var/www/html/expand_machinery_frontend
+          EXCLUDE: ".git,.github,.next/cache"
 
       # 8️⃣ Restart frontend with PM2
       - name: Restart application
@@ -76,11 +63,11 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY_LIVE }}
-          port: 62987
+          port: 22
           script: |
-            cd /home/ec2-user/expand_machinery_frontend/
+            cd /var/www/html/expand_machinery_frontend/
             echo "Restarting frontend..."
-            pm2 reload expand-frontend || pm2 start "npm run start" --name expand-frontend
+            pm2 restart expand-frontend || pm2 start "npm run start" --name expand-frontend
             pm2 save
             pm2 status
             echo "✅ Frontend restarted successfully"
