@@ -484,6 +484,7 @@ export default function CustomerDashboard() {
             lastName: editingCustomer.name.split(' ').slice(1).join(' ') ?? '',
             email: editingCustomer.email,
             phoneNumber: editingCustomer.phone,
+            company_name: editingCustomer.company_name || '',
           } : undefined}
         />
 

@@ -7,6 +7,7 @@ type AddCustomerForm = {
     email: string;
     phoneNumber: string;
     password: string;
+    company_name: string;
 };
 
 type AddCustomerModalProps = {
@@ -26,7 +27,8 @@ const CustomerModal = ({ isOpen, onClose, onSubmit, initialData, title, submitLa
         lastName: '',
         email: '',
         phoneNumber: '',
-        password: ''
+        password: '',
+        company_name: ''
     });
 
     const [errors, setErrors] = useState<Partial<Record<keyof AddCustomerForm, string>>>({});
@@ -39,6 +41,7 @@ const CustomerModal = ({ isOpen, onClose, onSubmit, initialData, title, submitLa
                 email: initialData?.email ?? '',
                 phoneNumber: initialData?.phoneNumber ?? '',
                 password: initialData?.password ?? '',
+                company_name: initialData?.company_name ?? '',
             });
             setErrors({});
         }
@@ -126,7 +129,8 @@ const CustomerModal = ({ isOpen, onClose, onSubmit, initialData, title, submitLa
             lastName: '',
             email: '',
             phoneNumber: '',
-            password: ''
+            password: '',
+            company_name: ''
         });
         setErrors({});
         onClose();
@@ -219,6 +223,23 @@ const CustomerModal = ({ isOpen, onClose, onSubmit, initialData, title, submitLa
                         />
                         {errors.email && (
                             <p className="text-red-500 dark:text-red-400 text-xs mt-1">{errors.email}</p>
+                        )}
+                    </div>
+
+                    <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Company Name
+                        </label>
+                        <input
+                            type="text"
+                            name="company_name"
+                            value={formData.company_name}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-2.5 border rounded-xl focus:outline-none dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 ${errors.company_name ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
+                            placeholder="Enter company name"
+                        />
+                        {errors.company_name && (
+                            <p className="text-red-500 dark:text-red-400 text-xs mt-1">{errors.company_name}</p>
                         )}
                     </div>
 

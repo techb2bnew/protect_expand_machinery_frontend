@@ -11,6 +11,7 @@ export interface Ticket {
     email: string;
     phone?: string;
     profileImage?: string;
+    company_name?: string;
   };
   assignedAgent?: {
     _id: string;

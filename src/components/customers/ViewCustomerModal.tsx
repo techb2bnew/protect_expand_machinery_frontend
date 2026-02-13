@@ -84,6 +84,20 @@ const ViewCustomerModal = ({ isOpen, onClose, customer }: ViewCustomerModalProps
                             </div>
                         </div>
 
+
+
+                        <div>
+                            <div className="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Company Name</label>
+                                    <p className="text-gray-900 dark:text-white font-medium">
+                                        {customer.company_name || 'N/A'}
+                                    </p>
+                                </div>
+                               
+                            </div>
+                        </div>
+
                         {/* Created Date */}
                         <div>
                             <div>

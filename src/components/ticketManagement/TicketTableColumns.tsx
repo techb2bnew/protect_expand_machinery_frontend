@@ -232,13 +232,13 @@ export const createTicketColumns = (
           >
             <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 dark:text-blue-400" />
           </button>
-          <button
+          {/* <button
             className="p-1.5 sm:p-2 hover:bg-green-50 dark:hover:bg-gray-600 rounded-lg transition-colors cursor-pointer"
             title="Reply"
             onClick={() => openChatbot(row._id, row)}
           >
             <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-600 dark:text-green-400" />
-          </button>
+          </button> */}
         </div>
       ),
     },

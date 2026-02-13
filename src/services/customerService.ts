@@ -18,6 +18,7 @@ export type Customer = {
     name: string;
     email: string;
     phone: string;
+    company_name: string;
     createdAt: string;
     isActive: boolean;
 };
@@ -27,6 +28,7 @@ export type ApiCustomer = {
     name: string;
     email: string;
     phone: string;
+    company_name: string;
     createdAt: string;
     status: string;
     isActive?: boolean;
@@ -38,6 +40,7 @@ export type CustomerFormData = {
     email: string;
     phoneNumber: string;
     password: string;
+    company_name?: string;
 };
 
 export type CustomerListResponse = {
@@ -109,6 +112,7 @@ class CustomerService {
                 email: formData.email,
                 phone: formData.phoneNumber,
                 password: formData.password,
+                company_name: formData.company_name || '',
             }),
         });
 
@@ -135,6 +139,7 @@ class CustomerService {
                 email: formData.email,
                 phone: formData.phoneNumber,
                 password: formData.password,
+                company_name: formData.company_name || '',
             }),
         });
 
@@ -264,6 +269,7 @@ class CustomerService {
             name: apiCustomer.name,
             email: apiCustomer.email,
             phone: apiCustomer.phone,
+            company_name: apiCustomer.company_name,
             createdAt: new Date(apiCustomer.createdAt).toLocaleDateString('en-GB'),
             isActive: apiCustomer.isActive ?? true,
         };

@@ -279,7 +279,7 @@ export default function SupportTicketSystem() {
               <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate">Ticket #{ticket?.ticketNumber} - {ticket?.customer?.name}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 w-full lg:w-auto">
+          {/* <div className="flex items-center gap-2 w-full lg:w-auto">
             <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap">Status:</span>
             <select
               value={(ticket?.status as string) || 'pending'}
@@ -306,7 +306,7 @@ export default function SupportTicketSystem() {
                 </>
               )}
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -417,10 +417,10 @@ export default function SupportTicketSystem() {
                 <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white mb-1">Created</p>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{formatDateTime(ticket?.createdAt)}</p>
               </div>
-              <div>
+              {/* <div>
                 <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white mb-1">Last Updated</p>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{formatDateTime(ticket?.updatedAt)}</p>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -443,6 +443,9 @@ export default function SupportTicketSystem() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="font-semibold text-sm sm:text-base text-blue-600 dark:text-blue-400 truncate">{ticket?.customer?.name || 'N/A'}</p>
+
+                  <p className="text-blue-600 dark:text-blue-400 hover:underline text-xs sm:text-sm break-all">Company Name:{ticket?.customer?.company_name || 'N/A'}</p>
+
                   <a href={`mailto:${ticket?.customer?.email || ''}`} className="text-blue-600 dark:text-blue-400 hover:underline text-xs sm:text-sm break-all">
                     Email: {ticket?.customer?.email || 'N/A'}
                   </a>
@@ -457,6 +460,8 @@ export default function SupportTicketSystem() {
                   ) : (
                     <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate mt-1">Phone: N/A</p>
                   )}
+
+
                 </div>
               </div>
               <div>
