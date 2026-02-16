@@ -44,7 +44,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
 
         {/* Filters Row */}
         <div className="flex flex-wrap gap-2 w-full lg:w-auto lg:flex-shrink-0">
-          <select
+          {/* <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="flex-1 lg:flex-none min-w-[120px] px-3 sm:px-4 py-2 sm:py-2.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm sm:text-base text-gray-900 dark:text-white cursor-pointer"
@@ -55,7 +55,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
             <option>In Progress</option>
             <option>Closed</option>
             <option>Reopen</option>
-          </select>
+          </select> */}
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
